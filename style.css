@@ -45,6 +45,33 @@ header {
 .card-content { display:none; margin-top:.5rem; }
 .card.open .card-content { display:block; }
 
+.card {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.card-content {
+  overflow-x: auto; /* allows horizontal scroll for wide equations */
+  max-width: 100%;
+}
+
+mjx-container {
+  overflow-x: auto !important;
+  text-align: left !important;
+  display: block !important;
+  max-width: 100%;
+  white-space: normal !important;
+}
+
+mjx-container[jax="CHTML"] {
+  display: inline-block !important;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: normal !important;
+  vertical-align: middle;
+}
+
 /* --- PRINT LAYOUTS --- */
 @media print {
   header { display:none; }
