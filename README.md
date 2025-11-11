@@ -4,10 +4,10 @@ Interactive web app for students studying Markov Decision Processes, Reinforceme
 iso-cards/
 
 
-├── index.html        # main page (cards + controls)
+├── [index.html](https://github.com/robert-z-lehr/Reference-Application-ISO-Concepts/blob/main/index.html)        # main page (cards + controls)
 
-├── style.css         # card styling + print layout
+├── [style.css]()         # card styling + print layout
 
-├── script.js         # interactivity & data
+├── [script.js]()         # interactivity & data
 
-└── assets/icons/        # optional icons or logo
+└── [assets/icons/]()        # optional icons or logo
