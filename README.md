@@ -8,6 +8,6 @@ iso-cards/
 
 ├── [style.css]()         # card styling + print layout
 
-├── [script.js]()         # interactivity & data
+├── [script.js](https://github.com/robert-z-lehr/Reference-Application-ISO-Concepts/blob/main/script.js)         # interactivity & data
 
 └── [assets/icons/]()        # optional icons or logo
