@@ -92,3 +92,26 @@ body.layout-8  { --cols: repeat(2,1fr); }
 body.layout-9  { --cols: repeat(3,1fr); }
 body.layout-10 { --cols: repeat(3,1fr); }
 body.layout-12 { --cols: repeat(3,1fr); }
+
+/* --- MathJax containment fix --- */
+mjx-container {
+  display: block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  box-sizing: border-box !important;
+}
+
+mjx-container > svg, 
+mjx-container > span {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.card-content {
+  overflow-x: auto;
+  word-break: break-word;
+  max-width: 100%;
+}
+
