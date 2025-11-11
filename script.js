@@ -102,7 +102,7 @@ const concepts = [
     id: 15,
     name: "Linear Programming Formulation (of MDP)",
     definition: "Solving MDPs as linear programs using Bellman inequalities and value variables.",
-    symbols: ["Minimize Σ V(s)", "Subject to V(s) ≤ c(s,a) + γ Σ P(s'|s,a)V(s') ∀ s,a"],
+    symbols: ["Maximize Σ V(s)", "Subject to V(s) ≤ c(s,a) + γ Σ P(s'|s,a)V(s') ∀ s,a"],
     example: "Using Pyomo to find optimal values and policies for a 3-state pavement system."
   },
   {
