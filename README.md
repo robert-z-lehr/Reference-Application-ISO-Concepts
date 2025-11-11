@@ -10,5 +10,4 @@ iso-cards/
 
 ├── script.js         # interactivity & data
 
-└── assets/
-    └── icons/        # optional icons or logo
+└── assets/icons/        # optional icons or logo
