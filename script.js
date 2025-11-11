@@ -79,7 +79,7 @@ const concepts = [
   },
   {
     id: 12,
-    name: "Recursive Induction (Backward Induction)",
+    name: "Backward Induction",
     definition: "A specific dynamic programming technique for finite-horizon problems, solving from the last stage backward to the first.",
     symbols: ["V_T(s) = terminal cost", "V_t(s) = min_a [ c_t(s,a) + Σ P(s'|s,a)V_{t+1}(s') ]"],
     example: "Computing optimal treatments year-by-year from year 5 back to year 1 in a finite-horizon maintenance model."
