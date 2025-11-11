@@ -6,8 +6,8 @@ iso-cards/
 
 ├── [index.html](https://github.com/robert-z-lehr/Reference-Application-ISO-Concepts/blob/main/index.html)        # main page (cards + controls)
 
-├── [style.css]()         # card styling + print layout
+├── [style.css](https://github.com/robert-z-lehr/Reference-Application-ISO-Concepts/blob/main/style.css)         # card styling + print layout
 
 ├── [script.js](https://github.com/robert-z-lehr/Reference-Application-ISO-Concepts/blob/main/script.js)         # interactivity & data
 
-└── [assets/icons/]()        # optional icons or logo
+└── assets/icons/        # optional icons or logo
