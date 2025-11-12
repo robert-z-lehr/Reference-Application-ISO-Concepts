@@ -1,299 +1,460 @@
-// ISO Concept Cards — full MathJax LaTeX version (35 concepts)
+// =============================
+// Concepts (35) with categories
+// =============================
 
 const concepts = [
+  // Optimization Basics
   {
-    id: 1,
+    id: 1, category: "optimization",
     name: "Knapsack Problem",
     definition: "Choose a subset of items to maximize total benefit while staying within a resource limit.",
     symbols: [
-      "$i = 1,\\ldots,n$",
-      "$v_i$: benefit or value",
-      "$w_i$: cost or weight",
-      "$W$: total capacity or budget",
-      "$x_i \\in \\{0,1\\}$: decision variable"
+      "$i = 1,\\ldots,n$", "$v_i$: benefit or value", "$w_i$: cost or weight",
+      "$W$: total capacity or budget", "$x_i \\in \\{0,1\\}$: decision variable"
     ],
-    example: "Selecting which pavement segments to repave within a $75,000$ budget to maximize total user satisfaction."
+    example: "Selecting which pavement segments to repave within a $75{,}000$ budget to maximize total user satisfaction."
   },
   {
-    id: 2,
-    name: "Dynamic Programming (DP)",
-    definition: "A recursive optimization method dividing a multi-stage decision problem into smaller subproblems, using the principle of optimality.",
-    symbols: [
-      "$V_t(s) = \\min_a [\\, c_t(s,a) + \\sum_{s'} P_t(s'|s,a)V_{t+1}(s') \\,]$",
-      "$s$: state", "$a$: action", "$t$: stage index"
-    ],
-    example: "Finding the minimum total maintenance cost over 10 years by solving backward from the final year."
-  },
-  {
-    id: 3,
-    name: "Reinforcement Learning (RL)",
-    definition: "A learning-based approach that estimates optimal policies through repeated trial-and-error interaction with an environment.",
-    symbols: [
-      "$Q(s,a) \\leftarrow Q(s,a) + \\alpha [\\, r + \\gamma \\max_{a'} Q(s',a') - Q(s,a) \\,]$",
-      "$\\alpha$: learning rate", "$\\gamma$: discount factor"
-    ],
-    example: "Training an algorithm to learn optimal pavement treatment decisions through simulated experience rather than known probabilities."
-  },
-  {
-    id: 4,
-    name: "Bottom-Up Modeling",
-    definition: "Start from modeling individual components and aggregate results to understand overall system performance.",
-    symbols: ["$F = \\sum_i f_i$", "$f_i$: component performance metric"],
-    example: "Simulating deterioration of each bridge and aggregating their expected maintenance costs to assess the total network cost."
-  },
-  {
-    id: 5,
-    name: "Top-Down Modeling",
-    definition: "Start from system-level targets or policies and allocate resources downward to meet them.",
-    symbols: ["$\\sum_i x_i \\le B$", "$x_i$: allocation", "$B$: total budget"],
-    example: "Allocating maintenance budgets to districts to meet a target average pavement condition index ≥ 80."
-  },
-  {
-    id: 6,
-    name: "Markov Chain",
-    definition: "A stochastic process where the future state depends only on the current state, not on prior history.",
-    symbols: ["$P = [p_{ij}]$: transition probability matrix", "$\\pi_{t+1} = \\pi_t P$"],
-    example: "Modeling road deterioration between Good, Fair, and Poor conditions using transition probabilities."
-  },
-  {
-    id: 7,
-    name: "Markov Decision Process (MDP)",
-    definition: "An extension of the Markov chain that includes decision-making—actions influence both costs and transition probabilities.",
-    symbols: ["$V(s) = \\min_a [\\, c(s,a) + \\gamma \\sum_{s'} P(s'|s,a)V(s') \\,]$"],
-    example: "Choosing between 'Do Nothing,' 'Maintain,' or 'Resurface' each year for pavements based on condition and cost."
-  },
-  {
-    id: 8,
-    name: "Facility-Level Model",
-    definition: "An optimization model applied to a single asset, ignoring system interactions.",
-    symbols: ["$s_t$: facility state at time $t$", "$a_t$: treatment action"],
-    example: "Determining optimal rehabilitation timing for a single bridge deck over 50 years."
-  },
-  {
-    id: 9,
-    name: "System-Level Model",
-    definition: "A network-level optimization that coordinates decisions across multiple facilities under shared constraints.",
-    symbols: ["$\\sum_i C_i(x_i) \\le B$", "$C_i(x_i)$: cost for facility $i$", "$B$: total budget"],
-    example: "Allocating annual budgets across city roads to minimize total user and agency costs."
-  },
-  {
-    id: 10,
-    name: "Finite-Horizon Problem",
-    definition: "Optimization over a fixed number of decision stages, ending with a terminal value or salvage state.",
-    symbols: ["$t = 0,\\ldots,T$", "$V_{T+1}(s)$: terminal value"],
-    example: "A 20-year pavement management plan ending with a residual value at year 20."
-  },
-  {
-    id: 11,
-    name: "Infinite-Horizon Problem",
-    definition: "Optimization with no fixed endpoint, typically using discounting or steady-state assumptions.",
-    symbols: ["$V(s) = \\min_a [\\, c(s,a) + \\gamma \\sum_{s'} P(s'|s,a)V(s') \\,]$"],
-    example: "Steady-state maintenance policy for a city-wide road network assumed to operate indefinitely."
-  },
-  {
-    id: 12,
-    name: "Backward Induction",
-    definition: "A dynamic programming technique for finite-horizon problems, solving from the last stage backward to the first.",
-    symbols: ["$V_T(s)$: terminal cost", "$V_t(s) = \\min_a [\\, c_t(s,a) + \\sum P(s'|s,a)V_{t+1}(s') \\,]$"],
-    example: "Computing optimal treatments year-by-year from year 5 back to year 1 in a finite-horizon maintenance model."
-  },
-  {
-    id: 13,
-    name: "Value Iteration",
-    definition: "Iterative Bellman updates of the value function until convergence, used for infinite-horizon MDPs.",
-    symbols: ["$V_{k+1}(s) = \\min_a [\\, c(s,a) + \\gamma \\sum P(s'|s,a)V_k(s') \\,]$"],
-    example: "Running iterative updates on pavement condition values until change < $1."
-  },
-  {
-    id: 14,
-    name: "Policy Iteration",
-    definition: "Algorithm that alternates between evaluating a policy’s value and improving it until convergence.",
-    symbols: [
-      "$V^\\pi(s) = c(s,\\pi(s)) + \\gamma \\sum P(s'|s,\\pi(s))V^\\pi(s')$",
-      "$\\pi'(s) = \\arg\\min_a [\\, c(s,a) + \\gamma \\sum P(s'|s,a)V^\\pi(s') \\,]$"
-    ],
-    example: "Start with 'Do Nothing' policy, evaluate cost, then switch to cheaper actions until stable."
-  },
-  {
-    id: 15,
-    name: "Linear Programming Formulation (of MDP)",
-    definition: "Solving MDPs as linear programs using Bellman inequalities and value variables.",
-    symbols: [
-      "$\\max \\sum_s V(s)$",
-      "subject to $V(s) \\le c(s,a) + \\gamma \\sum P(s'|s,a)V(s') \\; \\forall s,a$"
-    ],
-    example: "Using Pyomo to find optimal values and policies for a 3-state pavement system."
-  },
-  {
-    id: 16,
-    name: "Stage",
-    definition: "A discrete time or decision point in a sequential optimization model.",
-    symbols: ["$t = 0,1,\\ldots,T$"],
-    example: "Each year in a 20-year pavement management horizon."
-  },
-  {
-    id: 17,
-    name: "State",
-    definition: "A description of the system’s condition at a given stage.",
-    symbols: ["$s \\in S$: set of states"],
-    example: "Pavement condition: Good, Fair, or Poor."
-  },
-  {
-    id: 18,
-    name: "Action",
-    definition: "A choice available to the decision maker at a specific state.",
-    symbols: ["$a \\in A(s)$"],
-    example: "Choosing among 'Do Nothing,' 'Routine Maintenance,' or 'Reconstruction.'"
-  },
-  {
-    id: 19,
+    id: 19, category: "optimization",
     name: "Decision Variable",
     definition: "A mathematical variable representing a decision in the optimization model.",
     symbols: ["$x_{s,a}$: fraction or area treated in state $s$ under action $a$"],
     example: "Area (sq yd) resurfaced in 'Poor' condition."
   },
   {
-    id: 20,
+    id: 20, category: "optimization",
     name: "Objective Function",
     definition: "The quantity to be minimized or maximized in an optimization problem.",
-    symbols: ["$\\min \\sum_{t,s,a} c_t(s,a)x_{t,s,a}$"],
+    symbols: ["$\\min \\sum_{t,s,a} c_t(s,a)\\,x_{t,s,a}$"],
     example: "Minimize discounted total cost of maintenance and user delay."
   },
   {
-    id: 21,
+    id: 21, category: "optimization",
     name: "Constraint",
     definition: "A rule that feasible solutions must satisfy in an optimization problem.",
-    symbols: ["$\\sum_a C(s,a)x_{s,a} \\le B$"],
-    example: "Annual maintenance spending ≤ $75,000$."
+    symbols: ["$\\sum_a C(s,a)\\,x_{s,a} \\le B$"],
+    example: "Annual maintenance spending $\\le \\$75{,}000$."
   },
   {
-    id: 22,
-    name: "Transition Probability",
-    definition: "The probability of moving from one state to another given an action.",
-    symbols: ["$P(s'|s,a)$: transition probability"],
-    example: "Probability that a Fair road remains Fair after routine maintenance = 0.8."
-  },
-  {
-    id: 23,
-    name: "Reward / Cost Function",
-    definition: "Immediate payoff or expense from taking a specific action in a given state.",
-    symbols: ["$r(s,a)$: reward", "$c(s,a)$: cost"],
-    example: "Routine maintenance costs $10$ per square yard."
-  },
-  {
-    id: 24,
-    name: "Discount Factor",
-    definition: "A coefficient that reduces the weight of future costs or rewards relative to the present.",
-    symbols: ["$\\gamma \\in (0,1)$"],
-    example: "With $\\gamma = 0.97$, $1$ received next year equals $0.97$ today."
-  },
-  {
-    id: 25,
-    name: "Bellman Equation",
-    definition: "The recursive relationship defining the optimal value function based on immediate and future costs.",
-    symbols: ["$V(s) = \\min_a [\\, c(s,a) + \\gamma \\sum P(s'|s,a)V(s') \\,]$"],
-    example: "Used to calculate minimum expected lifetime cost of maintaining a pavement section."
-  },
-  {
-    id: 26,
-    name: "Steady-State Condition",
-    definition: "A state distribution that remains constant over time in a Markov process.",
-    symbols: ["$\\pi = \\pi P$"],
-    example: "Long-run equilibrium: 40% Good, 35% Fair, 25% Poor."
-  },
-  {
-    id: 27,
+    id: 27, category: "optimization",
     name: "Budget Constraint",
     definition: "A restriction limiting the total amount of resources or cost per period.",
     symbols: ["$\\sum_i c_i x_i \\le B$"],
-    example: "Total yearly maintenance cost ≤ $75,000$."
+    example: "Total yearly maintenance cost $\\le \\$75{,}000$."
   },
   {
-    id: 28,
+    id: 28, category: "optimization",
     name: "Feasible Region",
     definition: "The set of all solutions that satisfy every model constraint.",
-    symbols: ["$\\mathcal{F} = \\{x \\mid Ax \\le b, x \\ge 0\\}$"],
+    symbols: ["$\\mathcal{F} = \\{x \\mid Ax \\le b,\\; x \\ge 0\\}$"],
     example: "All possible allocations of funds that meet the budget and nonnegativity conditions."
   },
   {
-    id: 29,
-    name: "State Transition Matrix",
-    definition: "A matrix summarizing probabilities of moving between states for a specific action.",
-    symbols: ["$P_a = [p_{ij}^a]$"],
-    example: "Separate transition matrices for 'Do Nothing' and 'Resurface' actions."
-  },
-  {
-    id: 30,
-    name: "Expected Value",
-    definition: "The probability-weighted average outcome across possible states or events.",
-    symbols: ["$E[X] = \\sum_x x P(x)$"],
-    example: "Expected maintenance cost = $0.7(1000) + 0.3(5000) = 2200$."
-  },
-  {
-    id: 31,
-    name: "Policy",
-    definition: "A rule or mapping that assigns an action to each state.",
-    symbols: ["$\\pi: S \\to A$"],
-    example: "If Good → Do Nothing; Fair → Maintain; Poor → Resurface."
-  },
-  {
-    id: 32,
-    name: "Policy Evaluation",
-    definition: "The process of computing the total expected value of a given policy.",
-    symbols: ["$V^\\pi(s) = c(s,\\pi(s)) + \\gamma \\sum P(s'|s,\\pi(s))V^\\pi(s')$"],
-    example: "Calculating 50-year expected cost if 'Maintain Fair, Resurface Poor' policy is followed."
-  },
-  {
-    id: 33,
-    name: "Policy Improvement",
-    definition: "Selecting new actions that yield a lower expected cost based on the evaluated policy values.",
-    symbols: ["$\\pi'(s) = \\arg\\min_a [\\, c(s,a) + \\gamma \\sum P(s'|s,a)V^\\pi(s') \\,]$"],
-    example: "Switching from 'Maintain Fair' to 'Do Nothing' if it yields lower long-term cost."
-  },
-  {
-    id: 34,
-    name: "System Optimization (Overall)",
-    definition: "Joint optimization of all facility, temporal, and budgetary decisions to minimize total cost or maximize performance.",
-    symbols: ["$\\min \\sum_{s,a} c(s,a)x_{s,a}$ subject to constraints"],
-    example: "Optimizing all city road maintenance actions to minimize total discounted cost over time."
-  },
-  {
-    id: 35,
+    id: 35, category: "optimization",
     name: "Core Components of Every Optimization Problem",
-    definition: "All optimization problems share four fundamental components that define their structure and solvability.",
+    definition: "Four fundamental components define an optimization model’s structure and solvability.",
     symbols: [
-      "Decision Variables $x_i$: unknowns to determine",
-      "Parameters $p_i$: fixed inputs such as costs, probabilities, capacities",
-      "Constraints $g_j(x,p) \\le 0$: rules limiting feasible solutions",
-      "Objective Function $f(x,p)$: quantity to minimize or maximize"
+      "Decision Variables $x_i$",
+      "Parameters $p_i$ (costs, probabilities, capacities)",
+      "Constraints $g_j(x,p) \\le 0$",
+      "Objective $f(x,p)$ (minimize or maximize)"
     ],
-    example: "In a pavement optimization model: decision variables are treated areas ($x_{s,a}$); parameters include costs and transition probabilities; constraints ensure total cost ≤ $75,000$; and the objective function minimizes total discounted agency + user cost."
+    example: "For pavement optimization: $x_{s,a}$ are treated areas; parameters include costs and transition probabilities; constraints enforce $\\le \\$75{,}000$; objective minimizes total discounted agency + user cost."
+  },
+
+  // Markov Processes
+  {
+    id: 6, category: "markov",
+    name: "Markov Chain",
+    definition: "A stochastic process where the future state depends only on the current state.",
+    symbols: ["$P = [p_{ij}]$ (transition matrix)", "$\\pi_{t+1} = \\pi_t P$"],
+    example: "Modeling deterioration among Good, Fair, Poor."
+  },
+  {
+    id: 22, category: "markov",
+    name: "Transition Probability",
+    definition: "Probability of moving from one state to another given an action (or passively in a chain).",
+    symbols: ["$P(s'\\mid s,a)$"],
+    example: "Fair remains Fair after routine maintenance with probability $0.8$."
+  },
+  {
+    id: 29, category: "markov",
+    name: "State Transition Matrix",
+    definition: "Matrix summarizing transition probabilities for a specific action.",
+    symbols: ["$P_a = [p_{ij}^a]$"],
+    example: "Separate matrices for 'Do Nothing' vs 'Resurface'."
+  },
+  {
+    id: 26, category: "markov",
+    name: "Steady-State Condition",
+    definition: "A state distribution that remains constant over time.",
+    symbols: ["$\\pi = \\pi P$"],
+    example: "Long-run mix: 40% Good, 35% Fair, 25% Poor."
+  },
+  {
+    id: 30, category: "markov",
+    name: "Expected Value",
+    definition: "Probability-weighted average outcome across possible events.",
+    symbols: ["$\\mathbb{E}[X] = \\sum_x x\\,P(x)$"],
+    example: "Expected maintenance cost $= 0.7(1000)+0.3(5000)=2200$."
+  },
+
+  // Dynamic Programming
+  {
+    id: 2, category: "dynamic",
+    name: "Dynamic Programming (DP)",
+    definition: "Recursive optimization using the principle of optimality.",
+    symbols: ["$V_t(s)=\\min_a [\\, c_t(s,a)+\\sum_{s'} P_t(s'\\mid s,a) V_{t+1}(s') \\,]$"],
+    example: "Solve 10-year plan by backward recursion."
+  },
+  {
+    id: 12, category: "dynamic",
+    name: "Backward Induction",
+    definition: "Finite-horizon DP solved from last stage backward.",
+    symbols: ["$V_T(s)$ terminal; $V_t(s)=\\min_a[\\,c_t+\\sum P V_{t+1}\\,]$"],
+    example: "Compute optimal treatments from year 5 to 1."
+  },
+  {
+    id: 10, category: "dynamic",
+    name: "Finite-Horizon Problem",
+    definition: "Optimization over a fixed number of stages with terminal value.",
+    symbols: ["$t=0,\\ldots,T$", "$V_{T+1}(s)$ terminal"],
+    example: "20-year plan with residual value."
+  },
+  {
+    id: 11, category: "dynamic",
+    name: "Infinite-Horizon Problem",
+    definition: "No fixed endpoint; uses discounting or steady-state assumptions.",
+    symbols: ["$V(s)=\\min_a[\\,c(s,a)+\\gamma\\sum P V(s')\\,]$"],
+    example: "Indefinite steady-state maintenance policy."
+  },
+  {
+    id: 16, category: "dynamic",
+    name: "Stage",
+    definition: "A discrete time or decision point.",
+    symbols: ["$t=0,1,\\ldots,T$"],
+    example: "Each year in the horizon."
+  },
+  {
+    id: 17, category: "dynamic",
+    name: "State",
+    definition: "System condition at a given stage.",
+    symbols: ["$s\\in S$"],
+    example: "Good, Fair, Poor."
+  },
+  {
+    id: 18, category: "dynamic",
+    name: "Action",
+    definition: "A choice available at a state.",
+    symbols: ["$a\\in A(s)$"],
+    example: "'Do Nothing', 'Maintain', 'Reconstruct'."
+  },
+  {
+    id: 25, category: "dynamic",
+    name: "Bellman Equation",
+    definition: "Recursive relation of optimal value via immediate and future costs.",
+    symbols: ["$V(s)=\\min_a[\\,c(s,a)+\\gamma \\sum P V(s')\\,]$"],
+    example: "Minimum expected lifetime cost of a section."
+  },
+  {
+    id: 13, category: "dynamic",
+    name: "Value Iteration",
+    definition: "Iterative Bellman updates until convergence (infinite-horizon).",
+    symbols: ["$V_{k+1}(s)=\\min_a[\\,c(s,a)+\\gamma\\sum P V_k(s')\\,]$"],
+    example: "Stop when max change $< \\$1$."
+  },
+  {
+    id: 14, category: "dynamic",
+    name: "Policy Iteration",
+    definition: "Alternate policy evaluation and improvement until convergence.",
+    symbols: [
+      "$V^{\\pi}(s)=c(s,\\pi(s))+\\gamma\\sum P V^{\\pi}(s')$",
+      "$\\pi'(s)=\\arg\\min_a[\\,c+\\gamma\\sum P V^{\\pi}\\,]$"
+    ],
+    example: "Improve from 'Do Nothing' to cheaper actions."
+  },
+  {
+    id: 31, category: "dynamic",
+    name: "Policy",
+    definition: "Mapping from states to actions.",
+    symbols: ["$\\pi: S\\to A$"],
+    example: "If Good→DN; Fair→Maintain; Poor→Resurface."
+  },
+  {
+    id: 32, category: "dynamic",
+    name: "Policy Evaluation",
+    definition: "Compute total expected value of a given policy.",
+    symbols: ["$V^{\\pi}(s)=c(s,\\pi(s))+\\gamma\\sum P V^{\\pi}(s')$"],
+    example: "50-year expected cost under a fixed policy."
+  },
+  {
+    id: 33, category: "dynamic",
+    name: "Policy Improvement",
+    definition: "Select actions that lower expected cost given evaluated values.",
+    symbols: ["$\\pi'(s)=\\arg\\min_a[\\,c+\\gamma\\sum P V^{\\pi}\\,]$"],
+    example: "Swap actions where cheaper in the long run."
+  },
+  {
+    id: 24, category: "dynamic",
+    name: "Discount Factor",
+    definition: "Weights future costs/rewards relative to present.",
+    symbols: ["$\\gamma\\in(0,1)$"],
+    example: "With $\\gamma=0.97$, $1 next year \\approx 0.97$ today."
+  },
+  {
+    id: 23, category: "dynamic",
+    name: "Reward / Cost Function",
+    definition: "Immediate payoff or expense for a state–action pair.",
+    symbols: ["$r(s,a)$ reward; $c(s,a)$ cost"],
+    example: "Routine maintenance costs $\\$10$/sq yd."
+  },
+
+  // Reinforcement Learning
+  {
+    id: 3, category: "rl",
+    name: "Reinforcement Learning (RL)",
+    definition: "Learn policies via trial-and-error interaction with an environment.",
+    symbols: [
+      "$Q(s,a)\\leftarrow Q(s,a)+\\alpha[\\,r+\\gamma\\max_{a'}Q(s',a')-Q(s,a)\\,]$",
+      "$\\alpha$ learning rate; $\\gamma$ discount"
+    ],
+    example: "Learn pavement treatment policies from simulated experience."
+  },
+
+  // System-Level / LP
+  {
+    id: 8, category: "system",
+    name: "Facility-Level Model",
+    definition: "Optimization on a single asset, ignoring system interactions.",
+    symbols: ["$s_t$ facility state at $t$; $a_t$ action"],
+    example: "Optimal rehab timing for one bridge deck."
+  },
+  {
+    id: 9, category: "system",
+    name: "System-Level Model",
+    definition: "Network-level optimization coordinating decisions under shared constraints.",
+    symbols: ["$\\sum_i C_i(x_i) \\le B$"],
+    example: "Allocate annual budgets across roads to minimize total cost."
+  },
+  {
+    id: 34, category: "system",
+    name: "System Optimization (Overall)",
+    definition: "Joint optimization across facilities, time, and budget.",
+    symbols: ["$\\min \\sum_{s,a} c(s,a)\\,x_{s,a}$ (subject to constraints)"],
+    example: "Choose all actions to minimize discounted total network cost."
+  },
+  {
+    id: 15, category: "system",
+    name: "Linear Programming Formulation (of MDP)",
+    definition: "LP equivalents for MDPs, written in cost-min or reward-max forms.",
+    symbols: [
+      "Cost form: $\\min \\sum_s V(s)$ s.t. $V(s)\\le c(s,a)+\\gamma\\sum P V(s')\\;\\forall s,a$",
+      "Reward form: $\\max \\sum_s V(s)$ s.t. $V(s)\\ge r(s,a)+\\gamma\\sum P V(s')\\;\\forall s,a$"
+    ],
+    example: "Solve a 3-state pavement MDP via Pyomo LP."
   }
 ];
 
-// render cards
+// =============================
+// Rendering & interactions
+// =============================
+
 const container = document.getElementById("card-container");
-concepts.forEach(c => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <h2>${c.id}. ${c.name}</h2>
-    <div class="card-content">
-      <p><strong>Definition:</strong> ${c.definition}</p>
-      <p><strong>Symbols:</strong></p>
-      <ul>${c.symbols.map(s => `<li>${s}</li>`).join("")}</ul>
-      <p><strong>Example:</strong> ${c.example}</p>
-    </div>`;
-  card.addEventListener("click", () => {
-    card.classList.toggle("open");
-    if (window.MathJax) MathJax.typesetPromise(); // render math when expanded
+const tabMenu = document.getElementById("tab-menu");
+const practiceShell = document.getElementById("practice-shell");
+
+// Build cards once, tag with category class
+function renderCards(list) {
+  container.innerHTML = "";
+  list.forEach(c => {
+    const card = document.createElement("div");
+    card.className = `card category-${c.category}`;
+    card.dataset.category = c.category;
+
+    const symbolsList = c.symbols.map(s => `<li>${s}</li>`).join("");
+    card.innerHTML = `
+      <h2>${c.id}. ${c.name}</h2>
+      <div class="card-content">
+        <p class="field"><span class="label">Definition:</span> ${c.definition}</p>
+        <p class="field"><span class="label">Symbols:</span></p>
+        <ul>${symbolsList}</ul>
+        <p class="field"><span class="label">Example:</span> ${c.example}</p>
+      </div>
+    `;
+    card.addEventListener("click", (e) => {
+      // Ignore clicks on links/buttons inside card
+      if (e.target.closest("button, a, select, input, label")) return;
+      card.classList.toggle("open");
+      if (window.MathJax) MathJax.typesetPromise();
+    });
+    container.appendChild(card);
   });
-  container.appendChild(card);
+  if (window.MathJax) MathJax.typesetPromise();
+}
+
+// Initial render (all)
+renderCards(concepts);
+
+// Tabs: filter cards + toggle practice visibility
+tabMenu.querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabMenu.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const cat = btn.dataset.category;
+    if (cat === "all") {
+      practiceShell.style.display = "";
+      renderCards(concepts);
+    } else if (cat === "examples") {
+      // Hide practice for Examples tab
+      practiceShell.style.display = "none";
+      renderExamplesTab();
+    } else {
+      practiceShell.style.display = "";
+      const filtered = concepts.filter(c => c.category === cat);
+      renderCards(filtered);
+    }
+  });
 });
 
-// layout & print
+// Examples tab scaffold
+function renderExamplesTab() {
+  container.innerHTML = `
+    <div class="card open">
+      <h2>Examples (Scaffold)</h2>
+      <div class="card-content">
+        <p>Level 1: Read a generated scenario and identify the underlying concept category.</p>
+        <p>Level 2: Solve the scenario (outline variables, constraints, objective or Bellman form as appropriate).</p>
+        <p>Level 3: Sensitivity idea (e.g., vary a parameter and predict policy changes).</p>
+        <p><em>Note:</em> This page is static; AI generation would require adding a backend or client-side API integration.</p>
+      </div>
+    </div>
+  `;
+}
+
+// Layout & print
 const layoutSelect = document.getElementById("layout");
 layoutSelect.addEventListener("change", () => {
   document.body.className = "layout-" + layoutSelect.value;
 });
 document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+// =============================
+// Practice panel (per-category)
+// =============================
+
+const toggleBtn = document.querySelector(".toggle-practice");
+const practiceContent = document.querySelector(".practice-content");
+const difficultySelect = document.getElementById("difficulty");
+const startBtn = document.getElementById("startPractice");
+const revealBtn = document.getElementById("revealAll");
+const newBtn = document.getElementById("newRandom");
+const blurToggle = document.getElementById("blurToggle");
+const practiceCard = document.getElementById("practice-card");
+
+toggleBtn.addEventListener("click", () => {
+  const isHidden = practiceContent.hasAttribute("hidden");
+  if (isHidden) {
+    practiceContent.removeAttribute("hidden");
+    toggleBtn.setAttribute("aria-expanded", "true");
+  } else {
+    practiceContent.setAttribute("hidden", "");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    // Unblur when closing practice
+    container.classList.remove("blurred");
+    blurToggle.checked = false;
+  }
+  if (window.MathJax) MathJax.typesetPromise();
+});
+
+blurToggle.addEventListener("change", () => {
+  if (blurToggle.checked) container.classList.add("blurred");
+  else container.classList.remove("blurred");
+});
+
+// Generate practice based on current tab category
+function currentCategory() {
+  const active = tabMenu.querySelector("button.active");
+  const cat = active ? active.dataset.category : "all";
+  return cat;
+}
+
+function poolForCategory(cat) {
+  if (cat === "all") return concepts.slice();
+  if (cat === "examples") return []; // no practice here
+  return concepts.filter(c => c.category === cat);
+}
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// fields: name, definition, symbols, example
+function buildPracticeCard(concept, shownCount) {
+  // Decide which fields to show (randomly choose shownCount of 4)
+  const fields = ["name","definition","symbols","example"];
+  const shuffled = fields.sort(() => Math.random() - 0.5);
+  const showSet = new Set(shuffled.slice(0, shownCount));
+
+  const nameHTML = showSet.has("name")
+    ? `<span class="value">${concept.name}</span>`
+    : `<span class="masked">— hidden —</span>`;
+
+  const defHTML = showSet.has("definition")
+    ? `${concept.definition}`
+    : `<span class="masked">— hidden —</span>`;
+
+  const symHTML = showSet.has("symbols")
+    ? `<ul>${concept.symbols.map(s=>`<li>${s}</li>`).join("")}</ul>`
+    : `<span class="masked">— hidden —</span>`;
+
+  const exHTML = showSet.has("example")
+    ? `${concept.example}`
+    : `<span class="masked">— hidden —</span>`;
+
+  practiceCard.innerHTML = `
+    <div class="field"><span class="label">Concept:</span> ${nameHTML}</div>
+    <div class="field"><span class="label">Definition:</span> ${defHTML}</div>
+    <div class="field"><span class="label">Symbols:</span> ${symHTML}</div>
+    <div class="field"><span class="label">Example:</span> ${exHTML}</div>
+  `;
+
+  // Enable reveal/new
+  revealBtn.disabled = false;
+  newBtn.disabled = false;
+
+  if (window.MathJax) MathJax.typesetPromise();
+}
+
+let lastConcept = null;
+
+startBtn.addEventListener("click", () => {
+  const cat = currentCategory();
+  const pool = poolForCategory(cat);
+  if (!pool.length) {
+    practiceCard.innerHTML = `<em>No concepts available for practice on this tab.</em>`;
+    return;
+  }
+  if (blurToggle.checked) container.classList.add("blurred");
+  const shown = Number(difficultySelect.value);
+  lastConcept = pickRandom(pool);
+  buildPracticeCard(lastConcept, shown);
+});
+
+newBtn.addEventListener("click", () => {
+  const cat = currentCategory();
+  const pool = poolForCategory(cat);
+  if (!pool.length) return;
+  const shown = Number(difficultySelect.value);
+  lastConcept = pickRandom(pool);
+  buildPracticeCard(lastConcept, shown);
+});
+
+revealBtn.addEventListener("click", () => {
+  if (!lastConcept) return;
+  // Rebuild with all 4 shown
+  buildPracticeCard(lastConcept, 4);
+  // Unblur to compare with cards, if desired
+  container.classList.remove("blurred");
+  blurToggle.checked = false;
+});
