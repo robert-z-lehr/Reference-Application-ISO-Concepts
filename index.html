@@ -6,88 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 
-  <!-- MathJax configuration (v3) -->
+  <!-- MathJax configuration -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']]
       },
-      // Enable automatic line breaking to keep math inside card width (screen & print)
-      chtml: {
-        linebreaks: { automatic: true, width: "container" }
-      },
-      svg: {
-        linebreaks: { automatic: true, width: "container" }
-      },
-      options: {
-        skipHtmlTags: ['script','noscript','style','textarea','pre','code']
-      }
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
     };
   </script>
   <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
-<header>
-  <h1>Infrastructure Systems Optimization – Concept Cards</h1>
-  <p>Select a layout → expand cards → print or download as PDF.</p>
+  <header>
+    <h1>Infrastructure Systems Optimization – Concept Cards</h1>
+    <p>Select a layout → expand cards → print or download as PDF.</p>
 
-  <label for="layout">Cards per page (print view):</label>
-  <select id="layout">
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="6">6</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="12">12</option>
-  </select>
+    <label for="layout">Cards per page:</label>
+    <select id="layout">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="6">6</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="12">12</option>
+    </select>
 
-  <button id="printBtn">Print / Download PDF</button>
-</header>
+    <button id="printBtn">Print / Download PDF</button>
+  </header>
 
-<!-- Tabs -->
-<nav class="tab-menu" id="tab-menu">
-  <button data-category="all" class="active">All</button>
-  <button data-category="optimization">Optimization Basics</button>
-  <button data-category="markov">Markov Processes</button>
-  <button data-category="dynamic">Dynamic Programming</button>
-  <button data-category="rl">Reinforcement Learning</button>
-  <button data-category="system">System-Level / LP</button>
-  <button data-category="examples">Examples</button>
-</nav>
+  <!-- Category Tabs -->
+  <nav class="tab-menu">
+    <button data-category="all" class="active">All</button>
+    <button data-category="optimization">Optimization</button>
+    <button data-category="markov">Markov / DP</button>
+    <button data-category="rl">Reinforcement Learning</button>
+    <button data-category="system">System Level</button>
+  </nav>
 
-<!-- Practice (shown for all tabs except Examples; JS will toggle visibility) -->
-<section id="practice-shell" class="practice-section">
-  <button class="toggle-practice" aria-expanded="false">Practice</button>
-  <div class="practice-content" hidden>
-    <div class="practice-row">
-      <label for="difficulty">Difficulty:</label>
-      <select id="difficulty">
-        <option value="1">Show 1 of 4 fields</option>
-        <option value="2">Show 2 of 4 fields</option>
-        <option value="3" selected>Show 3 of 4 fields</option>
-      </select>
+  <main id="card-container"></main>
 
-      <label class="inline">
-        <input type="checkbox" id="blurToggle" checked>
-        Blur cards below while practicing
-      </label>
-
-      <button id="startPractice">Start</button>
-      <button id="revealAll" disabled>Reveal Hidden</button>
-      <button id="newRandom" disabled>New Random</button>
+  <!-- Practice Section -->
+  <section id="practice-section">
+    <h2>Practice Mode</h2>
+    <div class="difficulty-toggle">
+      <label><input type="radio" name="level" value="1" checked> Level 1</label>
+      <label><input type="radio" name="level" value="2"> Level 2</label>
+      <label><input type="radio" name="level" value="3"> Level 3</label>
     </div>
+    <button id="practiceBtn">Start Practice</button>
+    <div id="practice-card"></div>
+  </section>
 
-    <div id="practice-card" class="practice-card" aria-live="polite"></div>
-  </div>
-</section>
-
-<!-- Cards -->
-<main id="card-container"></main>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
