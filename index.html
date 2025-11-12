@@ -5,7 +5,11 @@
   <title>ISO Concept Cards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico">
+
+  <!-- Favicon (optional, suppresses 404) -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- If you don’t have a favicon yet, comment this line out to avoid the 404 warning -->
+  <!-- <link rel="icon" href="data:,"> -->
 
   <!-- MathJax v3 -->
   <script>
@@ -55,12 +59,18 @@
   <!-- Practice Section -->
   <section id="practice-section">
     <h2>Practice Mode</h2>
-    <div class="difficulty-toggle">
-      <label><input type="radio" name="level" value="1" checked> Level 1</label>
-      <label><input type="radio" name="level" value="2"> Level 2</label>
-      <label><input type="radio" name="level" value="3"> Level 3</label>
+    <div class="practice-controls">
+      <div class="difficulty-toggle">
+        <label><input type="radio" name="level" value="1" checked> Level 1</label>
+        <label><input type="radio" name="level" value="2"> Level 2</label>
+        <label><input type="radio" name="level" value="3"> Level 3</label>
+      </div>
+
+      <input type="text" id="answerBox" placeholder="Type your answer here..." />
+      <button id="practiceBtn">Start Practice</button>
+      <button id="checkBtn">Check Answer</button>
     </div>
-    <button id="practiceBtn">Start Practice</button>
+
     <div id="practice-card"></div>
   </section>
 
