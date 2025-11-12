@@ -1,175 +1,35 @@
 :root {
-  --border:#ddd;
-  --accent:#1e4d8c;
-  --green:#b5e2b2;
-  --yellow:#fff2a1;
-  --orange:#ffd1a1;
-  --red:#f5a1a1;
+  --border:#ddd;--accent:#1e4d8c;
+  --green:#b5e2b2;--yellow:#fff2a1;
+  --orange:#ffd1a1;--red:#f5a1a1;
+  --gray:#e0e0e0;
 }
 
-body {
-  font-family: system-ui, sans-serif;
-  margin:0;
-  background:#fafafa;
-  color:#222;
-}
+body{font-family:system-ui,sans-serif;margin:0;background:#fafafa;color:#222;}
+header{background:#fff;border-bottom:1px solid var(--border);padding:1rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;}
 
-header {
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  padding:1rem;
-  display:flex;
-  flex-wrap:wrap;
-  gap:.5rem;
-  align-items:center;
-}
+.tab-menu{display:flex;gap:.5rem;padding:.5rem 1rem;background:#fff;border-bottom:1px solid var(--border);}
+.tab-menu button{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:.4rem 1rem;cursor:pointer;}
+.tab-menu button.active{background:#163a66;}
 
-.tab-menu {
-  display:flex;
-  gap:0.5rem;
-  padding:0.5rem 1rem;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-}
+#card-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;padding:1rem;}
+.card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1rem;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.05);overflow-x:auto;}
+.card h2{margin-top:0;color:var(--accent);font-size:1.05rem;}
+.card-content{display:none;margin-top:.5rem;overflow-x:auto;white-space:normal;}
+.card.open .card-content{display:block;}
 
-.tab-menu button {
-  background:var(--accent);
-  color:white;
-  border:none;
-  border-radius:4px;
-  padding:0.4rem 1rem;
-  cursor:pointer;
-}
+mjx-container{display:block!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;overflow-x:auto!important;}
 
-.tab-menu button.active {
-  background:#163a66;
-}
+#practice-section{background:#fff;border-top:2px solid var(--accent);margin:1rem;padding:1rem;border-radius:6px;}
+.practice-container{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;}
+.practice-left{flex:3;min-width:260px;}
+.practice-buttons{display:flex;gap:.5rem;align-items:center;margin-top:.5rem;}
+#answerBox{flex:1;padding:.4rem;border:1px solid var(--border);border-radius:4px;min-width:200px;margin-top:.5rem;}
+#practiceBtn,#checkBtn{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:.4rem 1rem;cursor:pointer;}
+#practice-card{margin-top:1rem;border:1px dashed var(--border);padding:1rem;min-height:100px;background:#fdfdfd;}
+.fuzzy{filter:blur(5px);opacity:.6;}
 
-/* --- Cards --- */
-#card-container {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-  padding:1rem;
-}
-
-.card {
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:1rem;
-  cursor:pointer;
-  box-shadow:0 1px 2px rgba(0,0,0,.05);
-  overflow-x:auto;
-}
-
-.card h2 {
-  margin-top:0;
-  color:var(--accent);
-  font-size:1.05rem;
-}
-
-.card-content {
-  display:none;
-  margin-top:.5rem;
-  overflow-x:auto;
-  white-space:normal;
-}
-.card.open .card-content { display:block; }
-
-/* --- MathJax fix --- */
-mjx-container {
-  display:block !important;
-  width:fit-content !important;
-  max-width:100% !important;
-  white-space:normal !important;
-  overflow-x:auto !important;
-}
-
-/* --- Practice Section --- */
-#practice-section {
-  background:#fff;
-  border-top:2px solid var(--accent);
-  margin:1rem;
-  padding:1rem;
-  border-radius:6px;
-}
-
-.practice-container {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  flex-wrap:wrap;
-}
-
-.practice-left {
-  flex:3;
-  min-width:260px;
-}
-
-.practice-controls,
-.practice-buttons {
-  display:flex;
-  flex-wrap:wrap;
-  gap:0.5rem;
-  align-items:center;
-  margin-bottom:1rem;
-}
-
-#answerBox {
-  flex:1;
-  padding:0.4rem;
-  border:1px solid var(--border);
-  border-radius:4px;
-  min-width:200px;
-  margin-top:0.5rem;
-  margin-bottom:0.5rem;
-}
-
-#checkBtn, #practiceBtn {
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:4px;
-  padding:0.4rem 1rem;
-  cursor:pointer;
-}
-
-#practice-card {
-  margin-top:1rem;
-  border:1px dashed var(--border);
-  padding:1rem;
-  min-height:100px;
-  background:#fdfdfd;
-}
-
-.fuzzy {
-  filter:blur(5px);
-  opacity:0.6;
-}
-
-/* --- Score Panel --- */
-.score-panel {
-  flex:1;
-  min-width:150px;
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:1rem;
-  text-align:center;
-  background:#f7f7f7;
-}
-
-#scoreDisplay {
-  font-size:1.5rem;
-  font-weight:bold;
-  border-radius:6px;
-  padding:0.5rem;
-  background:var(--red);
-}
-
-/* --- Print --- */
-@media print {
-  header, .tab-menu, #practice-section { display:none; }
-  body { background:#fff; }
-  .card { page-break-inside:avoid; border:1pt solid #000; }
-}
+.score-panel{flex:1;min-width:180px;border:1px solid var(--border);border-radius:6px;padding:1rem;background:#f7f7f7;}
+.score-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;}
+.scoreBox{width:70px;text-align:center;padding:.3rem;border-radius:4px;background:var(--gray);}
+@media print{header,.tab-menu,#practice-section{display:none;}body{background:#fff;}.card{page-break-inside:avoid;border:1pt solid #000;}}
