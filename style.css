@@ -78,9 +78,9 @@ header {
 mjx-container {
   display:block !important;
   width:fit-content !important;
-  max-width:none !important;
-  white-space:nowrap !important;
-  overflow-x:visible !important;
+  max-width:100% !important;
+  white-space:normal !important;
+  overflow-x:auto !important;
 }
 
 /* --- Practice Section --- */
@@ -90,6 +90,31 @@ mjx-container {
   margin:1rem;
   padding:1rem;
   border-radius:6px;
+}
+
+.practice-controls {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  align-items:center;
+  margin-bottom:1rem;
+}
+
+#answerBox {
+  flex:1;
+  padding:0.4rem;
+  border:1px solid var(--border);
+  border-radius:4px;
+  min-width:200px;
+}
+
+#checkBtn, #practiceBtn {
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  padding:0.4rem 1rem;
+  cursor:pointer;
 }
 
 #practice-card {
