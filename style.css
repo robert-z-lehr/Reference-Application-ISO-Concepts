@@ -1,11 +1,7 @@
 :root {
   --border:#ddd;
   --accent:#1e4d8c;
-  --accent-dark:#163a66;
-  --muted:#f9f9f9;
 }
-
-* { box-sizing: border-box; }
 
 body {
   font-family: system-ui, sans-serif;
@@ -14,78 +10,39 @@ body {
   color:#222;
 }
 
-/* Header */
 header {
   background:#fff;
   border-bottom:1px solid var(--border);
   padding:1rem;
   display:flex;
   flex-wrap:wrap;
-  gap:.5rem 1rem;
+  gap:.5rem;
   align-items:center;
 }
 
-header h1 { flex-basis:100%; margin:0 0 .25rem; font-size:1.2rem; }
-
-/* Tabs */
+/* --- Tabs --- */
 .tab-menu {
   display:flex;
-  gap:.5rem;
-  padding:.5rem 1rem;
+  gap:0.5rem;
+  padding:0.5rem 1rem;
   background:#fff;
   border-bottom:1px solid var(--border);
 }
+
 .tab-menu button {
   background:var(--accent);
-  color:#fff;
+  color:white;
   border:none;
-  padding:.5rem .9rem;
   border-radius:4px;
-  cursor:pointer;
-  font-size:.95rem;
-}
-.tab-menu button:hover { background:var(--accent-dark); }
-.tab-menu button.active { outline:2px solid #0002; }
-
-/* Practice */
-.practice-section {
-  margin:1rem;
-  padding:.75rem;
-  background:var(--muted);
-  border:1px solid var(--border);
-  border-radius:6px;
-}
-.toggle-practice {
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:4px;
-  padding:.4rem .7rem;
+  padding:0.4rem 1rem;
   cursor:pointer;
 }
-.practice-content { margin-top:.75rem; }
-.practice-content[hidden] { display:none; }
 
-.practice-row {
-  display:flex;
-  flex-wrap:wrap;
-  gap:.5rem 1rem;
-  align-items:center;
+.tab-menu button.active {
+  background:#163a66;
 }
-.practice-row .inline { display:flex; align-items:center; gap:.35rem; }
 
-.practice-card {
-  margin-top:.75rem;
-  padding:.75rem;
-  background:#fff;
-  border:1px dashed var(--border);
-  border-radius:6px;
-  min-height:3.5rem;
-}
-.practice-card .field { margin:.25rem 0; }
-.practice-card .label { font-weight:600; }
-.practice-card .masked { color:#888; font-style:italic; }
-
-/* Cards Grid */
+/* --- Cards --- */
 #card-container {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -100,71 +57,57 @@ header h1 { flex-basis:100%; margin:0 0 .25rem; font-size:1.2rem; }
   padding:1rem;
   cursor:pointer;
   box-shadow:0 1px 2px rgba(0,0,0,.05);
+  overflow-x:auto;
 }
+
 .card h2 {
   margin-top:0;
   color:var(--accent);
   font-size:1.05rem;
 }
-.card-content { display:none; margin-top:.5rem; }
+
+.card-content {
+  display:none;
+  margin-top:.5rem;
+  overflow-x:auto;
+  white-space:normal;
+}
 .card.open .card-content { display:block; }
 
-/* Blur while practicing */
-.blurred {
-  filter: blur(6px);
-  pointer-events: none;
-}
-
-/* Wrapping & Math containment */
-.card, .card-content {
-  overflow-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  max-width: 100%;
-}
-
-/* MathJax containment & line breaking */
+/* --- MathJax fix --- */
 mjx-container {
   display:block !important;
-  max-width:100% !important;
-  overflow-x:auto !important;
-  overflow-wrap:break-word !important;
-  white-space:normal !important;
-  box-sizing:border-box !important;
-  text-align:left !important;
-}
-mjx-container > svg,
-mjx-container > span {
-  max-width:100% !important;
-  height:auto !important;
-}
-mjx-container[jax="CHTML"] {
-  display:block !important;
-  max-width:100%;
-  overflow-x:auto;
-  white-space:normal !important;
-  vertical-align:middle;
+  width:fit-content !important;
+  max-width:none !important;
+  white-space:nowrap !important;
+  overflow-x:visible !important;
 }
 
-/* Print layouts */
+/* --- Practice Section --- */
+#practice-section {
+  background:#fff;
+  border-top:2px solid var(--accent);
+  margin:1rem;
+  padding:1rem;
+  border-radius:6px;
+}
+
+#practice-card {
+  margin-top:1rem;
+  border:1px dashed var(--border);
+  padding:1rem;
+  min-height:100px;
+  background:#fdfdfd;
+}
+
+.fuzzy {
+  filter:blur(5px);
+  opacity:0.6;
+}
+
+/* --- Print --- */
 @media print {
-  header, .tab-menu, .practice-section { display:none !important; }
+  header, .tab-menu, #practice-section { display:none; }
   body { background:#fff; }
-  #card-container {
-    display:grid;
-    grid-template-columns:var(--cols);
-    gap:.5cm;
-    padding:0;
-  }
   .card { page-break-inside:avoid; border:1pt solid #000; }
-  /* Ensure math fits on printed page */
-  mjx-container { overflow-x:visible !important; }
 }
-
-body.layout-3  { --cols: repeat(1,1fr); }
-body.layout-4  { --cols: repeat(2,1fr); }
-body.layout-6  { --cols: repeat(2,1fr); }
-body.layout-8  { --cols: repeat(2,1fr); }
-body.layout-9  { --cols: repeat(3,1fr); }
-body.layout-10 { --cols: repeat(3,1fr); }
-body.layout-12 { --cols: repeat(3,1fr); }
