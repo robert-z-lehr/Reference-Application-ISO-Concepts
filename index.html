@@ -6,22 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 
-  <!-- MathJax configuration -->
+  <!-- MathJax configuration (v3) -->
   <script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    },
-    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
-  };
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      // Enable automatic line breaking to keep math inside card width (screen & print)
+      chtml: {
+        linebreaks: { automatic: true, width: "container" }
+      },
+      svg: {
+        linebreaks: { automatic: true, width: "container" }
+      },
+      options: {
+        skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+      }
+    };
   </script>
-
   <script id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 </head>
-  
 <body>
 <header>
   <h1>Infrastructure Systems Optimization – Concept Cards</h1>
@@ -41,6 +48,44 @@
   <button id="printBtn">Print / Download PDF</button>
 </header>
 
+<!-- Tabs -->
+<nav class="tab-menu" id="tab-menu">
+  <button data-category="all" class="active">All</button>
+  <button data-category="optimization">Optimization Basics</button>
+  <button data-category="markov">Markov Processes</button>
+  <button data-category="dynamic">Dynamic Programming</button>
+  <button data-category="rl">Reinforcement Learning</button>
+  <button data-category="system">System-Level / LP</button>
+  <button data-category="examples">Examples</button>
+</nav>
+
+<!-- Practice (shown for all tabs except Examples; JS will toggle visibility) -->
+<section id="practice-shell" class="practice-section">
+  <button class="toggle-practice" aria-expanded="false">Practice</button>
+  <div class="practice-content" hidden>
+    <div class="practice-row">
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="1">Show 1 of 4 fields</option>
+        <option value="2">Show 2 of 4 fields</option>
+        <option value="3" selected>Show 3 of 4 fields</option>
+      </select>
+
+      <label class="inline">
+        <input type="checkbox" id="blurToggle" checked>
+        Blur cards below while practicing
+      </label>
+
+      <button id="startPractice">Start</button>
+      <button id="revealAll" disabled>Reveal Hidden</button>
+      <button id="newRandom" disabled>New Random</button>
+    </div>
+
+    <div id="practice-card" class="practice-card" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- Cards -->
 <main id="card-container"></main>
 
 <script src="script.js"></script>
