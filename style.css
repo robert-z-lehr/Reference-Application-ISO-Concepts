@@ -1,6 +1,10 @@
 :root {
   --border:#ddd;
   --accent:#1e4d8c;
+  --green:#b5e2b2;
+  --yellow:#fff2a1;
+  --orange:#ffd1a1;
+  --red:#f5a1a1;
 }
 
 body {
@@ -20,7 +24,6 @@ header {
   align-items:center;
 }
 
-/* --- Tabs --- */
 .tab-menu {
   display:flex;
   gap:0.5rem;
@@ -92,7 +95,20 @@ mjx-container {
   border-radius:6px;
 }
 
-.practice-controls {
+.practice-container {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+
+.practice-left {
+  flex:3;
+  min-width:260px;
+}
+
+.practice-controls,
+.practice-buttons {
   display:flex;
   flex-wrap:wrap;
   gap:0.5rem;
@@ -106,6 +122,8 @@ mjx-container {
   border:1px solid var(--border);
   border-radius:4px;
   min-width:200px;
+  margin-top:0.5rem;
+  margin-bottom:0.5rem;
 }
 
 #checkBtn, #practiceBtn {
@@ -128,6 +146,25 @@ mjx-container {
 .fuzzy {
   filter:blur(5px);
   opacity:0.6;
+}
+
+/* --- Score Panel --- */
+.score-panel {
+  flex:1;
+  min-width:150px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:1rem;
+  text-align:center;
+  background:#f7f7f7;
+}
+
+#scoreDisplay {
+  font-size:1.5rem;
+  font-weight:bold;
+  border-radius:6px;
+  padding:0.5rem;
+  background:var(--red);
 }
 
 /* --- Print --- */
