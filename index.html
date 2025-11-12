@@ -6,10 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Favicon (optional, suppresses 404) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <!-- If you don’t have a favicon yet, comment this line out to avoid the 404 warning -->
-  <!-- <link rel="icon" href="data:,"> -->
+  <!-- Optional favicon (comment out if not available) -->
+  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 
   <!-- MathJax v3 -->
   <script>
@@ -54,21 +52,31 @@
     <button data-category="system">System Level</button>
   </nav>
 
+  <!-- Main Study Cards -->
   <main id="card-container"></main>
 
   <!-- Practice Section -->
   <section id="practice-section">
     <h2>Practice Mode</h2>
-    <div class="practice-controls">
-      <div class="difficulty-toggle">
-        <label><input type="radio" name="level" value="1" checked> Level 1</label>
-        <label><input type="radio" name="level" value="2"> Level 2</label>
-        <label><input type="radio" name="level" value="3"> Level 3</label>
+    <div class="practice-container">
+      <div class="practice-left">
+        <div class="difficulty-toggle">
+          <label><input type="radio" name="level" value="1" checked> Level 1</label>
+          <label><input type="radio" name="level" value="2"> Level 2</label>
+          <label><input type="radio" name="level" value="3"> Level 3</label>
+        </div>
+
+        <input type="text" id="answerBox" placeholder="Type your answer here..." />
+        <div class="practice-buttons">
+          <button id="practiceBtn">Start Practice</button>
+          <button id="checkBtn">Check Answer</button>
+        </div>
       </div>
 
-      <input type="text" id="answerBox" placeholder="Type your answer here..." />
-      <button id="practiceBtn">Start Practice</button>
-      <button id="checkBtn">Check Answer</button>
+      <div class="score-panel">
+        <h3>Score</h3>
+        <div id="scoreDisplay">0%</div>
+      </div>
     </div>
 
     <div id="practice-card"></div>
