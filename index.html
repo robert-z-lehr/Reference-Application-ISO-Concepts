@@ -4,34 +4,50 @@
   <meta charset="UTF-8">
   <title>ISO Concept Cards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <!-- optional favicon -->
-  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 
-  <!-- MathJax -->
+  <!-- CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Correct favicon reference -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- MathJax v3 configuration -->
   <script>
     window.MathJax = {
-      tex: {inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},
-      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
     };
   </script>
+
+  <!-- MathJax script -->
   <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
 </head>
 
 <body>
   <header>
     <h1>Infrastructure Systems Optimization – Concept Cards</h1>
     <p>Select a layout → expand cards → print or download as PDF.</p>
+
     <label for="layout">Cards per page:</label>
     <select id="layout">
-      <option value="3">3</option><option value="4">4</option><option value="6">6</option>
-      <option value="8">8</option><option value="9">9</option>
-      <option value="10">10</option><option value="12">12</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="6">6</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="12">12</option>
     </select>
+
     <button id="printBtn">Print / Download PDF</button>
   </header>
 
+  <!-- Category Navigation Tabs -->
   <nav class="tab-menu">
     <button data-category="all" class="active">All</button>
     <button data-category="optimization">Optimization</button>
@@ -40,10 +56,13 @@
     <button data-category="system">System Level</button>
   </nav>
 
+  <!-- Main Concept Card Container -->
   <main id="card-container"></main>
 
+  <!-- Practice Section -->
   <section id="practice-section">
     <h2>Practice Mode</h2>
+
     <div class="practice-container">
       <div class="practice-left">
         <div class="difficulty-toggle">
@@ -51,13 +70,16 @@
           <label><input type="radio" name="level" value="2"> Level 2</label>
           <label><input type="radio" name="level" value="3"> Level 3</label>
         </div>
-        <input type="text" id="answerBox" placeholder="Type your answer here …" />
+
+        <input type="text" id="answerBox" placeholder="Type your answer here..." />
+
         <div class="practice-buttons">
           <button id="practiceBtn">Start Practice</button>
           <button id="checkBtn">Check Answer</button>
         </div>
       </div>
 
+      <!-- Score panel -->
       <div class="score-panel">
         <h3>Scores</h3>
         <div class="score-line"><span>Level 1:</span><div id="score1" class="scoreBox">None</div></div>
@@ -69,6 +91,7 @@
     <div id="practice-card"></div>
   </section>
 
+  <!-- JavaScript logic -->
   <script src="script.js"></script>
 </body>
 </html>
